@@ -1,0 +1,8 @@
+:host {
+    display: inline-block;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}

@@ -1,0 +1,77 @@
+<div>
+  <button
+    mat-icon-button
+    class="close-modal-button"
+    [mat-dialog-close]="false"
+    (click)="onClose()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div *ngIf="data.action == 'visual'">
+    <h1 mat-dialog-title>Visualizar CV en PDF</h1>
+
+    <span>Selecciona las opciones disponibles:</span>
+
+    <div fxLayout="row wrap" fxLayoutAlign="center" mat-dialog-actions>
+      <button
+        class="option-button"
+        fxFlex
+        mat-raised-button
+        [mat-dialog-close]="true"
+        (click)="onAction('visualMint')"
+      >
+        <img
+          src="../../../../../../../../../assets/mint.png"
+          alt="Logo de la empresa Mint"
+        />
+      </button>
+      <button
+        class="option-button"
+        fxFlex
+        mat-raised-button
+        [mat-dialog-close]="true"
+        (click)="onAction('visualManjaro')"
+      >
+        <img
+          src="../../../../../../../../../assets/manjaro.png"
+          alt="Logo de la empresa Manjaro"
+        />
+      </button>
+    </div>
+  </div>
+
+
+  <div *ngIf="data.action == 'download'">
+    <h1 mat-dialog-title>Descargar CV en PDF</h1>
+
+    <span>Selecciona las opciones disponibles:</span>
+
+    <div fxLayoutAlign="center" mat-dialog-actions>
+      <button
+        class="option-button"
+        fxFlex
+        mat-raised-button
+        [mat-dialog-close]="true"
+        (click)="onAction('downloadMint')"
+      >
+        <img
+          src="../../../../../../../../../assets/mint.png"
+          alt="Logo de la empresa Mint"
+        />
+      </button>
+      <button
+        class="option-button"
+        fxFlex
+        mat-raised-button
+        [mat-dialog-close]="true"
+        (click)="onAction('downloadManjaro')"
+      >
+        <img
+          src="../../../../../../../../../assets/manjaro.png"
+          alt="Logo de la empresa Manjaro"
+        />
+      </button>
+    </div>
+  </div>
+</div>

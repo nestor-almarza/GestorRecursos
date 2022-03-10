@@ -1,0 +1,38 @@
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.registerForm{
+    max-width: 500px;
+    padding: 20px;
+    margin-top: 10vh;
+    width: 500px;
+}
+
+mat-card-title{
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+mat-card-content{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+mat-form-field{
+    margin-top: 10px;
+}
+
+mat-card-actions, mat-card-actions button{
+    width: 100%;
+}
+
+.registerActions{
+    margin-top: 15px;
+}

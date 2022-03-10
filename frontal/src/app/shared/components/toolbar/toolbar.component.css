@@ -1,0 +1,61 @@
+.logo {
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 100%;
+    cursor: pointer;
+}
+
+mat-toolbar {
+    background-color: transparent;
+    color: #fff;
+}
+
+.account-toolbar-row {
+    background-color: #303041;
+    height: 40px;
+}
+
+.hide {
+    display: none;
+}
+
+.active {
+    border-bottom: #FF4081 2px solid;
+}
+
+.subrow {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.subrow span {
+    text-transform: uppercase;
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 16px;
+    transform: scale(1) translateY(0);
+    transition: transform .2s ease-in-out;
+}
+
+.subrow span:hover {
+    transform: scale(1.1) translateY(-2px);
+}
+
+.subrow span{
+    margin-left: 10px;
+}
+
+.account-button {
+    font-weight: 300;
+}
+:host{
+width: 100%;
+}
+
+.account-button app-avataaar {
+    height: 40px;
+    padding: 2px;
+    margin-right: 5px;
+}
+
+#greet{
+    color: rgb(226 166 33);
+}

@@ -1,0 +1,87 @@
+<div>
+    <div>
+       
+        <h1 *ngIf="!candidate.id">Ficha del candidato</h1>
+        <h1 *ngIf="candidate.id">{{candidate.firstName}} {{candidate.lastName}}, {{candidate.birthDate | birthDateToAge}} años </h1>
+    </div>
+    
+    <div fxLayout="column" *ngIf="!candidate.id; else candidateDataLoaded" class="spinnerContainer">
+        <mat-spinner class="centerSpinner" color="primary" [diameter]="150"></mat-spinner>
+        <div>
+          <strong>Obteniendo datos del candidato...</strong>
+        </div>
+        
+    </div>
+    <ng-template #candidateDataLoaded>
+        <div mat-dialog-content>
+
+            <h3 class="header-title">Observaciones</h3>
+            <div class="aditionalData">
+                <p>{{candidate.observation}}</p>
+                <p *ngIf="!candidate.observation">Sin datos adicionales.</p>
+            </div>
+           
+            <mat-divider></mat-divider>
+
+            <h3 class="header-title">Experiencias</h3>
+
+            <mat-accordion multi togglePosition="before">
+                <p class="aditionalData" *ngIf="candidate.experiences.length == 0">Sin experiencias.</p>
+                <mat-expansion-panel *ngFor="let experience of candidate.experiences">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title fxLayoutGap="10px" fxLayoutAlign="start center">
+
+                            <div fxLayoutGap="5px" fxFlex fxLayoutAlign="start center">
+                                <mat-icon color="primary">badge</mat-icon>
+                                <span>{{experience.title}}</span>
+                            </div>
+
+                            <div fxLayoutGap="5px" fxFlex="25" fxLayoutAlign="start center" *ngIf="experience.duration">
+                                <mat-icon color="accent">schedule</mat-icon>
+                                <span>{{experience.duration | experienceDuration}}</span>
+                            </div>
+
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list class="experienceData background-content" fxLayout="column" role="list">
+
+                        <mat-list-item>
+                            <div fxFlex fxLayoutAlign="start">
+                                <mat-icon>business</mat-icon>
+                                <span>Empresa: {{experience.company}}</span>
+                            </div>
+                        </mat-list-item>
+                
+                        <mat-list-item>
+                            <div fxFlex fxLayoutAlign="start">
+                                <mat-icon>description</mat-icon>
+                                <span>Descripción: {{experience.description}}</span>
+                            </div>
+                        </mat-list-item>
+
+                        <mat-list-item fxLayoutAlign="end">
+                            <div fxLayoutAlign="start center" fxLayoutGap="10px">
+                                <span>{{experience.startDate | monthToString }} </span>
+                                <mat-icon>arrow_forward</mat-icon>
+                                <span *ngIf="experience.endDate; else presenteBlock">{{experience.endDate | monthToString }} </span>
+                                
+                                <ng-template #presenteBlock><span>Presente</span></ng-template>
+                            </div>
+
+                        </mat-list-item>
+
+                    </mat-list>
+                    </mat-expansion-panel>
+                    
+            </mat-accordion> 
+
+        </div>
+    </ng-template>
+    
+    <div fxLayout="row" fxLayoutAlign="center" mat-dialog-actions>
+        <button   mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!candidate" (click)="onAction()">Editar</button>
+        <button  mat-raised-button color="warn" [mat-dialog-close]="false" [disabled]="!candidate" (click)="onClose()">Cancelar</button>
+    </div>    
+</div>
+
+

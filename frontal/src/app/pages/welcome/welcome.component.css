@@ -1,0 +1,33 @@
+:host {
+  width: 100%;
+  max-width: 800px;
+}
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  /* height: 500px; */
+  /* padding: 5px 20px 15px 20px; */
+  padding: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 300px;
+}
+
+img {
+  max-width: 200px;
+  border-radius: 5px;
+}
+
+.navigationButtons{
+  width: 100%;
+}
+
+.candidates {
+  max-width: 350px;
+}
+
+.candidates mat-card-content{
+  margin-top: 10px;
+}

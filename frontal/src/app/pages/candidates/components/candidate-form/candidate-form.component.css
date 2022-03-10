@@ -1,0 +1,76 @@
+:host {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 10vh;
+  background-color: white;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  /* box-shadow: 10px 10px 10px hsla(0, 0%, 0%, 0.3); */
+}
+
+mat-card {
+  max-width: 300px;
+}
+
+.form-title {
+  font-size: 1.15rem;
+}
+
+.add-experience-button {
+  float: right;
+  margin-top: 5px;
+}
+
+.tab {
+  padding-top: 30px;
+}
+
+mat-form-field {
+  margin: 5px;
+}
+
+/* .date mat-form-field {
+  width: 150px;
+} */
+
+.experienceList{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  place-content: unset;
+}
+
+#experience-card {
+  border-bottom: 3px solid rgb(85, 83, 83);
+}
+
+
+.experience-card .mat-card-content{
+  margin-top: 10px;
+}
+#title-experience{
+overflow-wrap: break-word;
+}
+
+#desciption-style{
+  padding: 6px;
+  margin: auto;
+  overflow-wrap: break-word;
+}
+mat-error{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+mat-tab-group h2{
+  margin-top: 5px;
+}
+
+.experienceActions{
+  margin-top: 10px;
+}
+
+.birthdate #matSuffix{
+  cursor: pointer;
+}

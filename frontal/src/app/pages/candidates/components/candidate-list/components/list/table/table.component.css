@@ -1,0 +1,33 @@
+.actionsForAll{
+    padding: 10px 20px 5px 10px;
+}
+
+table {
+    width: 100%;
+}
+
+.table-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+.mat-column-actions{
+    width: fit-content;
+}
+
+.mat-column-updatedAt{
+    max-width: 250px;
+}
+
+.mat-column-firstName,
+.mat-column-lastName,
+.mat-column-actions, 
+.mat-column-updatedAt {
+    padding-left: 10px;
+}
+
+.not-found-img {
+    max-height: 150px;
+    filter: grayscale(100%);
+}

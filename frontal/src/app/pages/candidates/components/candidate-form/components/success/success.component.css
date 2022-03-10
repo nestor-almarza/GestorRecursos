@@ -1,0 +1,9 @@
+:host {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+  }

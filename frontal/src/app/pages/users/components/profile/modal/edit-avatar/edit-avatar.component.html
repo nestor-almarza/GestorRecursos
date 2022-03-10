@@ -1,0 +1,20 @@
+<h1 class="title">Personaliza tu avatar</h1>
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="5px">
+
+        <button mat-raised-button color="primary" (click)="randomizeAvatar()">Random</button>
+
+        <div *ngFor="let option of optionList" fxLayout="row" fxLayoutAlign="space-between center" class="control">
+            <button mat-button (click)="back(option.aspectName)"><mat-icon>chevron_left</mat-icon></button>
+            <span>{{option.name}}</span>
+            <button mat-button (click)="next(option.aspectName)"><mat-icon>chevron_right</mat-icon></button>
+        </div>
+    </div>
+
+    <app-avataaar [avatar]="avatar"></app-avataaar>
+</div>
+
+<div fxLayoutGap="5px">
+    <button fxFlex mat-stroked-button color="primary" (click)="close()">Cancelar</button>
+    <button fxFlex mat-raised-button color="primary" (click)="saveAvatar()">Guardar</button>
+</div>

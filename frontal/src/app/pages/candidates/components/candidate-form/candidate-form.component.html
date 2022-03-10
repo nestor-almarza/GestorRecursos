@@ -1,0 +1,217 @@
+<div fxLayout="row">
+  <h1>Formulario de candidatos</h1>
+
+  <span fxFlex></span>
+
+  <div>
+    <button
+      *ngIf="!idCandidate"
+      mat-raised-button
+      color="primary"
+      class="save-button"
+      (click)="saveCandidate()"
+      [disabled]="isEditingExperience"
+    >
+      Guardar
+    </button>
+
+    <button
+      *ngIf="idCandidate"
+      mat-raised-button
+      color="primary"
+      class="save-button"
+      (click)="editCandidate()"
+      [disabled]="isEditingExperience"
+    >
+      Guardar cambios
+    </button>
+  </div>
+</div>
+
+<mat-tab-group #tabGroup [formGroup]="candidateFormGroup">
+  <mat-tab label="Datos personales" [disabled]="isEditingExperience">
+    <h2 class="form-title">Nombre completo</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        minlength="3"
+        maxlength="40"
+      />
+      <mat-error *ngIf="candidateFormGroup.controls['firstName'].invalid">{{getFirstNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellidos</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        minlength="3"
+        maxlength="40"
+      />
+      <mat-error *ngIf="candidateFormGroup.controls['lastName'].invalid">{{getLastNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div class="birthdate">
+      <h2 class="form-title">Fecha de nacimiento</h2>
+      <mat-form-field appearance="fill" appBirthDateFormat>
+        <mat-label>Fecha (DD/MM/YYYY)</mat-label>
+        <input
+          matInput
+          [min]="minDate"
+          [max]="maxDate"
+          [matDatepicker]="pickerBirthdate"
+          formControlName="birthDate"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerBirthdate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerBirthdate></mat-datepicker>
+        <mat-error *ngIf=" candidateFormGroup.controls['birthDate'].invalid">{{getBirthDateErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </mat-tab>
+  <mat-tab label="Experiencia" fxLayout="column" [disabled]="isEditingExperience">
+    <div>
+      <h2 class="form-title">Experiencia</h2>
+      <!-- this span pushes elements to the sides -->
+      <span fxFlex></span>
+
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="!isEditingExperience"
+        (click)="addExperienceButton()"
+      >
+        Añadir
+      </button>
+    </div>
+
+    <div
+      class="experienceList"
+      *ngIf="!isEditingExperience"
+      gdAuto="row wrap"
+    >
+      <mat-card
+        id="experience-card"
+        gdArea
+        fxLayout="column"
+        fxFill
+        *ngFor="let experience of candidate.experiences; let index = index"
+      >
+        <mat-card-title fxLayoutAlign="start center" fxLayout="row">
+          <span id="title-experience" fxFlex="80">{{ experience.title }}</span>
+
+          <span fxFlex></span>
+
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="openEditExperience(experience, index)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteExperience(experience, index)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-title>
+
+        <mat-card-subtitle >
+          <div >
+            <p>
+              <mat-icon>business</mat-icon>
+              <strong>
+                {{ experience.company }}
+              </strong>
+            </p>
+          </div>
+        </mat-card-subtitle>
+        
+        <mat-card-subtitle>
+          <div>
+            
+            <p fxFlex="30">
+              <mat-icon>calendar_today</mat-icon>
+              <strong
+              >{{ experience.startDate | dateMiniGestor }} -
+              {{
+                experience.currentlyWorking
+                ? "Presente"
+                : (experience.endDate | dateMiniGestor)
+              }}</strong
+              >
+            </p>
+            <p *ngIf="experience.duration" fxFlex="70" >
+              <mat-icon>schedule</mat-icon>
+              <strong> {{ experience.duration | experienceDuration }} </strong>
+            </p>
+
+          </div>
+          <mat-divider inset></mat-divider>
+          <p id="desciption-style" >{{ experience.description }}</p>
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+
+    <app-experience-form
+      [isNewExperience]="isAddingNewExperience"
+      [experience]="experienceToEdit"
+      (onAddedExperience)="addExperience($event)"
+      (onEditedExperience)="updateExperience($event)"
+      (completed)="onCompleteExperience()"
+      *ngIf="isEditingExperience"
+    >
+    </app-experience-form>
+  </mat-tab>
+
+  <mat-tab label="Datos adicionales" [disabled]="isEditingExperience">
+    <div fxLayout="column">
+      <h2 class="form-title">Datos adicionales</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Observaciones</mat-label>
+        <textarea
+          matInput
+          cols="30"
+          rows="10"
+          formControlName="observation"
+          minlength="3"
+          maxlength="300"
+        ></textarea>
+        <mat-error *ngIf="candidateFormGroup.controls['observation'].invalid">{{getObservationsErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Asignar a usuario" *ngIf="isEmployer()">
+    <div fxLayout="column">
+      <h2 class="form-title">Asignar usuario</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Asignar a...</mat-label>
+        <input
+          type="text"
+          placeholder="Elige un usuario..."
+          matInput
+          [formControl]="userCandidateForm"
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFullName" (optionSelected)="selectedOption( $event )">
+          <mat-option [value]="noUser">
+            Nadie
+          </mat-option>
+          <mat-option *ngFor="let user of filteredUserOptions" [value]="user">
+            {{user.fullName}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="userCandidateForm.hasError('required')">Selecciona un usuario o selecciona 'Nadie' para no asignarlo a ninguno.</mat-error>
+      </mat-form-field>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

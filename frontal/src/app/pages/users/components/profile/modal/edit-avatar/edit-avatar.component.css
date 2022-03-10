@@ -1,0 +1,19 @@
+:host {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.control {
+    user-select: none;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 5px;
+}

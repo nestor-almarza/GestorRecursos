@@ -1,0 +1,40 @@
+<div fxFlex fxLayout="column">
+    
+    <h2>Asignar usuario</h2>
+
+    <div fxLayout="column" *ngIf="!candidate.id; else candidateDataLoaded" class="spinner-container">
+        <mat-spinner color="primary" [diameter]="150"></mat-spinner>
+        <div>
+          <strong>Obteniendo datos del candidato...</strong>
+        </div>
+        
+    </div>
+    <ng-template #candidateDataLoaded>
+        <div mat-dialog-content fxLayout="column">
+            <mat-form-field appearance="fill">
+              <mat-label>Asignar a...</mat-label>
+              <input
+                type="text"
+                placeholder="Elige un usuario..."
+                matInput
+                [formControl]="userCandidateForm"
+                [matAutocomplete]="auto"
+              >
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFullName" (optionSelected)="selectedOption( $event )">
+                <mat-option [value]="noUser">
+                  Nadie
+                </mat-option>
+                <mat-option *ngFor="let user of filteredUserOptions" [value]="user">
+                  {{user.fullName}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="userCandidateForm.hasError('required')">Selecciona un usuario o selecciona 'Nadie' para no asignarlo a ninguno.</mat-error>
+            </mat-form-field>
+        </div>
+    </ng-template>
+    <div fxLayout="row" fxLayoutAlign="center center" mat-dialog-actions>
+      <button mat-raised-button color="primary" [disabled]="!candidate.id" (click)="onAction()">Asignar</button>
+      <button mat-raised-button color="warn" [disabled]="!candidate.id" (click)="onClose()">Cancelar</button>
+    </div>
+    
+</div>

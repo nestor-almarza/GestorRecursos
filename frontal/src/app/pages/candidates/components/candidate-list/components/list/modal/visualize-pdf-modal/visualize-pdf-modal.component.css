@@ -1,0 +1,31 @@
+:host {
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.close-modal-button{
+    float: right;
+}
+
+.option-button {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.05);}
+h1{
+    text-align: center;
+    font-size: 21px;
+}
+
+button{
+    margin-top: -5px ;
+    margin-left: -10px;
+}
+
+img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.option{
+    width: 35%;
+}

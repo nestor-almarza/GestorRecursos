@@ -1,0 +1,47 @@
+<mat-card class="registerForm" fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title>Generar usuario candidato</mat-card-title>
+    <mat-divider inset></mat-divider>
+    <mat-card-content>
+        <div fxLayout="column" [formGroup]="registerFormGroup">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <mat-form-field fxFlex="50" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" formControlName="firstName" minlength="3" maxlength="40" autofocus required>
+                    <mat-error *ngIf="registerFormGroup.controls['firstName'].invalid">{{getFirstNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="50" appearance="fill">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput type="text" formControlName="lastName" minlength="3" maxlength="40" required>
+                    <mat-error *ngIf="registerFormGroup.controls['lastName'].invalid">{{getLastNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="ejemplo@ejemplo.com" formControlName="email" required>
+                <mat-error *ngIf="registerFormGroup.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" minlength="8" maxlength="64" required>
+                <button mat-icon-button matSuffix (click)="generatePassword()" title="Generar contraseña">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    title="{{hidePassword ? 'Mostrar' : 'Ocultar'}} contraseña">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerFormGroup.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <app-password-meter
+            [passwordToCheck]="registerFormGroup.controls['password'].value"
+            ></app-password-meter>
+            
+        </div>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="register()">Generar usuario</button>
+    </mat-card-actions>
+</mat-card>

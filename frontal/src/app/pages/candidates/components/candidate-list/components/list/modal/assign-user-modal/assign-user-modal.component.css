@@ -1,0 +1,16 @@
+.spinner-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.spinner-container div{
+    margin-top: 15px;
+    color: #3f51b5;
+}
+
+.assign-user-form{
+    max-width: 500px;
+    padding: 20px;
+}

@@ -1,0 +1,17 @@
+<div>
+    <button mat-icon-button class="close-modal-button" [mat-dialog-close]="false" (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+    
+    <h1 mat-dialog-title>Eliminar experiencia</h1>
+</div>
+    
+<div mat-dialog-content>
+    <div >
+        <h4>¿Estás seguro de que quieres eliminar <strong>permanentemente</strong> esta experiencia?</h4>
+    </div>
+     
+</div>
+<div fxLayoutAlign="end center" mat-dialog-actions>
+    <button  mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onAction()">Eliminar</button>
+</div>

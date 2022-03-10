@@ -1,0 +1,43 @@
+<div *ngIf="user" fxFill fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="50px">
+  <div fxFlex fxLayout="column" fxLayoutGap="5px" >
+
+    <h1>Datos básicos</h1>
+
+    <!-- Full name-->
+    <div class="list-item" fxLayout="row wrap">
+      <div fxFlex fxLayout="column">
+        <span class="key">Nombre completo</span>
+        <span class="value">{{ user.fullName }}</span>
+      </div>
+      <button mat-stroked-button (click)="changeFullName()" fxFlexAlign="right">Cambiar</button>
+    </div>
+
+    <div class="list-item">
+      <span class="key">Correo electrónico</span>
+      <span class="value">{{ user.email }}</span>
+    </div>
+    <div class="list-item" fxLayout="row wrap">
+      <div fxFlex fxLayout="column">
+        <span class="key">Contraseña</span>
+        <span class="value">**********</span>
+      </div>
+      <button mat-stroked-button (click)="setPassword()" fxFlexAlign="right">Cambiar</button>
+    </div>
+    <div class="list-item">
+      <span class="key">Fecha de creación</span>
+      <span class="value"> {{ user.createAt | date:'dd/MM/yy HH:mm'}} </span>
+    </div>
+    
+  </div>
+
+  <div
+    fxLayout="column"
+    fxLayoutGap="5px"
+  >
+    <h1>Foto de perfil</h1>
+    <div class="profile-picture-container">
+      <app-avataaar (click)="changeAvatar()" [avatar]="user.avatar"></app-avataaar>
+      <button (click)="changeAvatar()" mat-icon-button color="primary"><mat-icon>brush</mat-icon></button>
+    </div>
+  </div>
+</div>

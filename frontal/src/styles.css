@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: hsl(231, 48%, 48%);
+  --secondary-color: hsl(231, 48%, 32%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100vh;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--primary-color);
+}
+
+.debug {
+  border: red 1px dashed;
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 0.301);
+  width: 100%;
+  height: 100%;
+}
+
+.centerSpinner {
+  margin-bottom: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  body,
+  html {
+    height: fit-content;
+  }
+}

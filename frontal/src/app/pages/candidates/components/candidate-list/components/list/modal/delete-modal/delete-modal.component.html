@@ -1,0 +1,17 @@
+
+<div>    
+    <h1 *ngIf="data.action == 'delete'" mat-dialog-title>Eliminar candidato</h1>
+    <h1 *ngIf="data.action == 'multiple'" mat-dialog-title>Eliminar candidatos</h1>
+</div>
+    
+<div mat-dialog-content>
+    <div >
+        <h4 *ngIf="data.action == 'delete';">¿Estás seguro de que quieres eliminar <strong>permanentemente</strong> a {{ data.data }}?</h4>
+        <h4 *ngIf="data.action == 'multiple';">¿Estás seguro de que quieres eliminar <strong>permanentemente</strong> a estos candidatos?</h4>
+    </div>
+     
+</div>
+<div fxLayoutAlign="end center" mat-dialog-actions>
+    <button fxFlex  mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onAction()">Eliminar</button>
+    <button fxFlex mat-raised-button color="primary" [mat-dialog-close]="false" (click)="onClose()"> Cancelar</button>
+</div>

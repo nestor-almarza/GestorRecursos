@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontal
+    ports:
+      - "4200:4200"
+    expose:
+      - "4200"
+    depends_on:
+      - backend
+      - mariadb
+
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE=gestorrecursos
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - mariadb_config:/etc/mysql/conf.d
+volumes:
+  mariadb_data:
+  mariadb_config:

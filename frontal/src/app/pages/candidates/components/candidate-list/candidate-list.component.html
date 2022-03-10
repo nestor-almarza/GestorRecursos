@@ -1,0 +1,32 @@
+<div>
+  <div fxLayout="column" *ngIf="loading || isDeletingAll" [@fadeInOut] class="spinnerContainerData loading">
+    <div class="loadingContainer">
+      <mat-spinner class="centerSpinner" color="primary" [diameter]="150"></mat-spinner>
+      <div>
+        <strong *ngIf="loading">Cargando lista de candidatos...</strong>
+        <strong *ngIf="isDeletingAll && !loading">Eliminando candidatos seleccionados...</strong>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="containerForm">
+      <!-- Filters -->
+      <app-filters
+        [error]="error"
+        (onFilter)="getFilters($event)"
+        (getInitData)="initFiltersData($event)"
+      ></app-filters>
+      
+      <!-- Table + Pagination -->
+      <app-table
+        [candidatesDataSource]="candidatesDataSource"
+        (getCandidates)="getCandidates()"
+        (showSnackBar)="showSnackBar($event)"
+        (getIsDeletingAll)="setIsDeletingAll($event)"
+        (getInitData)="initTableData($event)"
+      ></app-table>
+  </div>
+</div>
+   
+

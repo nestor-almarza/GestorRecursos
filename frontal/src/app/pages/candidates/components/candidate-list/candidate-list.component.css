@@ -1,0 +1,49 @@
+:host {
+  position: relative;
+  max-width: 800px;
+  margin-top: 10vh;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.containerForm {
+  background: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* .spinnerContainer{
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  transform: translate(-50%, 50%);
+} */
+
+.spinnerContainerData {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loadingContainer {
+  background-color: #fff;
+  color: var(--primary-color);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+/* .centerSpinner{
+  margin-bottom: 15px;
+  margin-right: auto;
+  margin-left: auto;
+} */

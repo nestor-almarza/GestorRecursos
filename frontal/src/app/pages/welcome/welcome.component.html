@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px"  class="container">
+    <h1>¡Bienvenid@ a MiniGestor!</h1>
+    <!-- <p>
+        Gestiona tus vacantes y encuentra los mejores candidatos.
+    </p> -->
+
+    <img src="../../../assets/laptop.gif" alt="miembros del equipo">
+
+
+    <!-- <div *ngIf="isEmployer">
+        <span>¡Hay {{stats.candidatesCount}} {{ (stats.candidatesCount == 1) ? "candidato registrado" : "candidatos registrados" }}!</span>
+    </div> -->
+
+<!-- 
+    <div fxLayout="column" fxLayoutGap="5px">
+        <div *ngFor="let panel of panels">
+            <button class="navigationButtons" mat-raised-button color="primary" *hasRole="panel.roles" [routerLink]="panel.url">{{panel.title}}</button>
+        </div>
+    </div> -->
+</div>
+
+<mat-card *ngIf="isEmployer" class="candidates" fxLayout="column" fxLayoutAlign="start center">
+    <mat-card-title>
+        <mat-icon>contact_page</mat-icon>
+        Candidatos
+    </mat-card-title>
+    <mat-divider inset></mat-divider>
+    <mat-card-content>
+        <h2>¡Hay {{stats.candidatesCount}} {{ (stats.candidatesCount == 1) ? "candidato registrado" : "candidatos registrados" }}!</h2>
+    </mat-card-content>
+</mat-card>

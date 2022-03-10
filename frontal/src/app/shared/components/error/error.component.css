@@ -1,0 +1,15 @@
+.container {
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    height: 520px;
+    width: 450px;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+  }
+
+  h1{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+  }

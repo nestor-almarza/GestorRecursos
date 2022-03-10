@@ -1,0 +1,54 @@
+<div [formGroup]="experienceFormGroup" class="experience" fxLayout="column">
+
+    <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input matInput type="text" formControlName="title" minlength="3" maxlength="50" />
+        <mat-error *ngIf="experienceFormGroup.controls['title'].invalid">{{getTitleErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Empresa</mat-label>
+        <input matInput type="text" formControlName="company" minlength="3" maxlength="50" />
+        <mat-error *ngIf="experienceFormGroup.controls['company'].invalid">{{getCompanyErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox #isCurrentlyWorking formControlName="currentlyWorking">Trabajas actualmente aquí</mat-checkbox>
+    <div>
+        <mat-form-field id="first-date-picker" appearance="fill" appExperienceDatesFormat>
+            <mat-label>Inicio (Mes/Año)</mat-label>
+            <input matInput [matDatepicker]="pickerStartDate" [min]="minDate" [max]="maxDate"
+                formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStartDate startView="multi-year"
+                (monthSelected)="chosenMonthHandler($event, pickerStartDate, experienceFormGroup.controls['startDate'])">
+            </mat-datepicker>
+            <mat-error *ngIf="experienceFormGroup.controls['startDate'].invalid">{{getStartErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill" *ngIf="!isCurrentlyWorking.checked" appExperienceDatesFormat>
+            <mat-label>Fin (Mes/Año)</mat-label>
+            <input matInput [matDatepicker]="pickerEndDate" [min]="minDate" [max]="maxDate" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEndDate startView="multi-year"
+                (monthSelected)="chosenMonthHandler($event, pickerEndDate, experienceFormGroup.controls['endDate'])">
+            </mat-datepicker>
+            <mat-error *ngIf="experienceFormGroup.controls['endDate'].invalid">{{getEndErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Descripción del puesto</mat-label>
+        <textarea matInput cols="30" rows="3" formControlName="description" minlength="3" maxlength="300"></textarea>
+        <mat-error *ngIf="experienceFormGroup.controls['description'].invalid">{{getDescriptionErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+
+    <div fxLayout="row" fxLayoutGap="5px">
+        <button fxFlex mat-raised-button color="warn" (click)="closeExperience()">Cancelar</button>
+
+        <button *ngIf="isNewExperience" fxFlex mat-raised-button color="primary"
+            (click)="addExperience()">Añadir</button>
+
+        <button *ngIf="!isNewExperience" fxFlex mat-raised-button color="primary"
+            (click)="editExperience()">Terminar de editar</button>
+    </div>

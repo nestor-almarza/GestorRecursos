@@ -1,0 +1,46 @@
+<div class="filters">
+    <mat-accordion class="headers-align" togglePosition="before">
+      <mat-expansion-panel expanded>
+        
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            Filtros
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        
+        <div [formGroup]="candidateFiltersFormGroup">
+          <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre o apellidos</mat-label>
+              <input matInput type="text" formControlName="partname" (keydown.enter)="searchWithFilters()">
+            </mat-form-field>
+    
+            <div>
+              <mat-form-field appearance="outline" appBirthDateFormat>
+                <mat-label>Desde (Última actualización)</mat-label>
+                <input matInput [matDatepicker]="pickerStartRage" formControlName="updatedAtStartRange">
+                <mat-datepicker-toggle matSuffix [for]="pickerStartRage"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStartRage></mat-datepicker>
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline" appBirthDateFormat>
+                <mat-label>Hasta (Última actualización)</mat-label>
+                <input matInput [matDatepicker]="pickerEndRage" formControlName="updatedAtEndRange">
+                <mat-datepicker-toggle matSuffix [for]="pickerEndRage"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEndRage></mat-datepicker>
+              </mat-form-field>
+            </div>
+            </div>
+          
+          <div fxLayout="row" fxLayoutGap="5px">
+            <button mat-raised-button color="primary" [disabled]="isEmptyForSearch()" (click)="searchWithFilters()">Buscar</button>
+            <button mat-raised-button color="warn" [disabled]="isEmptyForClear()" (click)="clearFilters()">Limpiar</button>
+          </div>
+   
+        </div>
+        
+      </mat-expansion-panel>
+    </mat-accordion>
+</div>

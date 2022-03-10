@@ -1,0 +1,53 @@
+<mat-toolbar *ngIf="currentUserSession">
+  <mat-toolbar-row class="account-toolbar-row">
+    <img src="../../../../assets/manjaro.png" routerLink="/home" class="logo">
+
+    <span fxFlex></span>
+
+    <button 
+    class="account-button"
+    color="accent"
+    mat-stroked-button
+    [matMenuTriggerFor]="userMenu"
+    >
+        <app-avataaar [avatar]="currentUserSession.avatar"></app-avataaar>
+        <span id="greet" >¡Hola, {{currentUserSession.firstName}}!</span>
+      </button>
+
+      <mat-menu #userMenu="matMenu">
+          
+        <button mat-menu-item routerLink="/users/me">
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
+        </button>
+
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+
+      </mat-menu>
+    
+  </mat-toolbar-row>
+
+  <mat-toolbar-row
+    *ngIf="currentUserSession"
+    class="subrow"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+  >
+
+    <!-- <span routerLink="/home" >
+      Inicio 
+    </span > -->
+    
+    <!-- GETS PANELS DEPENDING ON THE ROLE -->
+    <span *ngFor="let panel of getPanels()"
+        [routerLink]="panel.url" 
+        routerLinkActive="active"
+        >
+        {{panel.title}}
+    </span>
+    
+  </mat-toolbar-row>
+</mat-toolbar>
