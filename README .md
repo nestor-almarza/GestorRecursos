@@ -1,4 +1,6 @@
 # Clone it
+*git clone https://github.com/nestor-almarza/GestorRecursos.git*
+
 Once in your local machine follow instructions. For any problem, bug
 or improvement report to `nestor.almarza.m@gmail.com`. Thanks in advance.
 
@@ -33,17 +35,6 @@ user:        madrid@madrid.com
 password:    madrid
 
 ENJOY!!
-
- _ __   ___  ___| |_ ___  _ __ 
-| '_ \ / _ \/ __| __/ _ \| '__|
-| | | |  __/\__ \ || (_) | | 
-|_| |_|\___||___/\__\___/|_| 
-          
-  __ _| |_ __ ___   __ _ _ __ ______ _ 
- / _` | | '_ ` _ \ / _` | '__|_  / _` |
-| (_| | | | | | | | (_| | |   / / (_| |
- \__,_|_|_| |_| |_|\__,_|_|  /___\__,_|
-
 
 # 2. Docker
 Assuming you have installed docker-compose on your machine;
